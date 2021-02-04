@@ -1,5 +1,6 @@
 <?php
 
+// Conexão com banco de dados 
 include'connect.php';
 
 if(isset($_POST['sub'])){
