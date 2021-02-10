@@ -1,9 +1,13 @@
 <?php
     include'connect.php';
-    $s="select * from reg where id='$_SESSION[id]'";
-    $qu= mysqli_query($con, $s);
-    $f=mysqli_fetch_assoc($qu);
-    
+
+    if(isset($_SESSION['id'])){
+        $s="select * from reg where id='$_SESSION[id]'";
+        $qu= mysqli_query($con, $s);
+        $f=mysqli_fetch_assoc($qu);
+    }else{
+        header('location:login.php');
+    }
 ?>
 <html>
     <head>
@@ -50,5 +54,6 @@ echo $f['image'];?>" width="100px" height="100px">
 </table>
 <a href="edit.php">Edit</a>
 <a href="delete.php">Delete</a>
+<a href="logout.php">Logout</a>
     </body>
 </html>

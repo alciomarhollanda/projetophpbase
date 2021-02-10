@@ -1,5 +1,7 @@
 <?php  
 
+// https://www.geeksforgeeks.org/php-program-count-page-views/
+
 $valor = 10;
 
 session_start(); 
