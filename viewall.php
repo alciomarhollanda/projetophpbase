@@ -1,6 +1,6 @@
 <?php
     include 'connect.php';
-    
+    include 'checkLogin.php';
 ?>
 
 <a href="home.php">Home</a>
