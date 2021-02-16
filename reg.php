@@ -1,4 +1,6 @@
 <?php
+
+
 include 'connect.php';
 if(isset($_POST['sub'])){
     $t=$_POST['text'];
@@ -46,8 +48,19 @@ if(isset($_POST['sub'])){
                         city
                         <select name="city">
                             <option value="">-select-</option>
-                            <option value="knp">kanpur</option>
-                            <option value="lko">lucknow</option>
+
+                            <?php
+                            $sqlCity= mysqli_query($con, "select * from city");
+                                                        
+                            while($item = mysqli_fetch_assoc($sqlCity))
+                            {
+                                $nomeItem = utf8_encode($item['nameCity']);
+                                $idCity = $item['idCity'];
+                                echo "                                
+                                    <option value=$nomeItem>$nomeItem</option>                                
+                                ";
+                            }
+                            ?>
                     </td>
                 </tr>
                 <tr>

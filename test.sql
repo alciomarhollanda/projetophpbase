@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 12, 2019 at 05:21 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.1.26
+-- Generation Time: 16-Fev-2021 às 15:24
+-- Versão do servidor: 10.1.13-MariaDB
+-- PHP Version: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -25,7 +23,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reg`
+-- Estrutura da tabela `city`
+--
+
+CREATE TABLE `city` (
+  `idCity` int(11) NOT NULL,
+  `nameCity` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `city`
+--
+
+INSERT INTO `city` (`idCity`, `nameCity`) VALUES
+(1, 'Campinas'),
+(2, 'Hortolândia');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `reg`
 --
 
 CREATE TABLE `reg` (
@@ -39,15 +56,22 @@ CREATE TABLE `reg` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `reg`
+-- Extraindo dados da tabela `reg`
 --
 
 INSERT INTO `reg` (`name`, `username`, `password`, `city`, `image`, `gender`, `id`) VALUES
-('Bikash', 'bikash', 'bikash', 'knp', 'image/images.png', 'male', 2);
+('Bikash', 'bikash', 'bikash', 'knp', 'image/images.png', 'male', 2),
+('Alciomar Hollanda', 'alciomar', '123', 'knp', 'image/github-octocat.png', 'male', 3);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `city`
+--
+ALTER TABLE `city`
+  ADD PRIMARY KEY (`idCity`);
 
 --
 -- Indexes for table `reg`
@@ -60,12 +84,15 @@ ALTER TABLE `reg`
 --
 
 --
+-- AUTO_INCREMENT for table `city`
+--
+ALTER TABLE `city`
+  MODIFY `idCity` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `reg`
 --
 ALTER TABLE `reg`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-COMMIT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
