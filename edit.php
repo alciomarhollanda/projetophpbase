@@ -94,6 +94,7 @@ if(isset($_POST['sub'])){
                         <img src="<?php echo $f['image']?>" width="100px" height="100px">
                         <input type="file" name="f1">
                         <input type="hidden" name="img1" value="<?php echo $f['image']?>">
+                        
                     </td>
                 </tr>
                 <tr>

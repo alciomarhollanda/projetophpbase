@@ -54,5 +54,6 @@ echo $f['image'];?>" width="100px" height="100px">
 <a href="delete.php">Delete</a>
 <a href="logout.php">Logout</a>
 <a href="viewall.php">View All Users</a>
+<a href="reg_city.php">Reg City</a>
     </body>
 </html>
