@@ -47,8 +47,10 @@ if(isset($_POST['sub'])){
                         <th>
                             Nome da cidade
                         </th>
-                        <th>
-                            
+                        <th>  
+                        </th>
+
+                        <th>  
                         </th>
 
 
@@ -65,6 +67,9 @@ if(isset($_POST['sub'])){
                         </td>
                         <td>
                             <a href="edit_city.php?idCity=<?php echo $f['idCity']?>&nameCity=<?php echo $f['nameCity']?>">Edit</a>
+                        </td>
+                        <td>
+                            <a href="delete_city.php?idCity=<?php echo $f['idCity']?>&nameCity=<?php echo $f['nameCity']?>">Delete</a>
                         </td>
                     </tr>
                 <?php

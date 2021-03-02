@@ -5,12 +5,15 @@
     include 'connect.php';
     include 'checkLogin.php';
 
-    if(isset($_POST['update'])){
+    if(isset($_POST['del'])){
         $id=$_POST['id'];
-        $nameCity=$_POST['name'];
 
-        $sqlUpdateCity = "UPDATE city set nameCity='{$nameCity}' WHERE idCity={$id}";
-        mysqli_query($con, $sqlUpdateCity);
+        $sqlDelete = "delete from city WHERE idCity={$id}";
+        mysqli_query($con, $sqlDelete);
+        header('location:reg_city.php');
+    }
+
+    if(isset($_POST['notdel'])){
         header('location:reg_city.php');
     }
     
@@ -20,24 +23,27 @@
     $queryGetCity= mysqli_query($con, $sqlGetCity);
     $resultCity=mysqli_fetch_assoc($queryGetCity);
 ?>
-    <h1> Edit City  </h1>
+    <h1> Delete City  </h1>
     <form method="POST" enctype="multipart/form-data">
                 <table>
                     <tr>
                         <td>
-                             Id
-                            <input readonly="readonly" type="text"  name="id" value="<?php echo $resultCity['idCity']?>">
+                             <!-- Id -->
+                            <input type="hidden"  name="id" value="<?php echo $resultCity['idCity']?>">
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Cidade
-                            <input type="text" name="name" value="<?php echo $resultCity['nameCity']?>">
+                            Deseja excluir a cidade <?php echo $resultCity['nameCity']?> ?
                         </td>
                     </tr>
                     <tr>
                     <td>
-                        <input type="submit" value="submit" name="update"> 
+                        <input type="submit" value="Delete" name="del"> 
+                    </td>
+
+                    <td>
+                        <input type="submit" value="Not Delete" name="notdel"> 
                     </td>
                 </tr>
                 </table>
