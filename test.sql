@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01-Mar-2021 às 16:26
+-- Tempo de geração: 11-Mar-2021 às 15:27
 -- Versão do servidor: 10.4.13-MariaDB
 -- versão do PHP: 7.4.8
 
@@ -38,7 +38,8 @@ CREATE TABLE `city` (
 
 INSERT INTO `city` (`idCity`, `nameCity`) VALUES
 (1, 'Campinas'),
-(2, 'Hortolândia');
+(2, 'Ortolândia'),
+(4, 'Sumaré');
 
 -- --------------------------------------------------------
 
@@ -62,7 +63,7 @@ CREATE TABLE `reg` (
 
 INSERT INTO `reg` (`name`, `username`, `password`, `city`, `image`, `gender`, `id`) VALUES
 ('Bikash', 'bikash', 'bikash', 'knp', 'image/images.png', 'male', 2),
-('Alciomar Hollanda', 'alciomar', '123', 'knp', 'image/github-octocat.png', 'male', 3);
+('Alciomar Hollanda', 'alciomar@gmail.com', '123', 'knp', 'image/github-octocat.png', 'male', 3);
 
 --
 -- Índices para tabelas despejadas
@@ -88,7 +89,7 @@ ALTER TABLE `reg`
 -- AUTO_INCREMENT de tabela `city`
 --
 ALTER TABLE `city`
-  MODIFY `idCity` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idCity` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `reg`
