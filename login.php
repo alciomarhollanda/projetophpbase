@@ -6,12 +6,17 @@ include'connect.php';
 if(isset($_POST['sub'])){
     $u=$_POST['user'];
     $p=$_POST['pass'];
-    $s= "select * from reg where username='$u' and password= '$p'";   
+    $s= "
+        select * from reg
+        left join profile_reg as p on p.idProfile = fk_IdProfile 
+        where username='$u' and password= '$p'
+    ";   
     $qu= mysqli_query($con, $s);
    
     if(mysqli_num_rows($qu)>0){
         $f= mysqli_fetch_assoc($qu);
         $_SESSION['id']=$f['id'];
+        $_SESSION['nomeProfile']=$f['nomeProfile'];
         header ('location:home.php');
     }
    else{

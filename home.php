@@ -51,9 +51,20 @@ echo $f['image'];?>" width="100px" height="100px">
 </tr>
 </table>
 <a href="edit.php">Edit</a>
-<a href="delete.php">Delete</a>
 <a href="logout.php">Logout</a>
-<a href="viewall.php">View All Users</a>
-<a href="reg_city.php">Reg City</a>
+<?php 
+    if($_SESSION['nomeProfile']=='Admin'){
+        echo "
+            <a href='delete.php'>Delete</a>
+            <a href='viewall.php'>View All Users</a>
+            <a href='reg_city.php'>Reg City</a>
+        ";
+    }else if ($_SESSION['nomeProfile']=='User'){
+        echo "
+            <a href='reg_city.php'>View City</a>
+        ";
+    }
+?>
+
     </body>
 </html>
