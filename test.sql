@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Mar-2021 às 15:27
+-- Tempo de geração: 15-Abr-2021 às 17:14
 -- Versão do servidor: 10.4.13-MariaDB
 -- versão do PHP: 7.4.8
 
@@ -44,6 +44,25 @@ INSERT INTO `city` (`idCity`, `nameCity`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `profile_reg`
+--
+
+CREATE TABLE `profile_reg` (
+  `idProfile` int(11) NOT NULL,
+  `nameProfile` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `profile_reg`
+--
+
+INSERT INTO `profile_reg` (`idProfile`, `nameProfile`) VALUES
+(1, 'Admin'),
+(2, 'User');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `reg`
 --
 
@@ -54,16 +73,17 @@ CREATE TABLE `reg` (
   `city` varchar(15) NOT NULL,
   `image` varchar(50) NOT NULL,
   `gender` varchar(10) NOT NULL,
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `fk_idProfile` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `reg`
 --
 
-INSERT INTO `reg` (`name`, `username`, `password`, `city`, `image`, `gender`, `id`) VALUES
-('Bikash', 'bikash', 'bikash', 'knp', 'image/images.png', 'male', 2),
-('Alciomar Hollanda', 'alciomar@gmail.com', '123', 'knp', 'image/github-octocat.png', 'male', 3);
+INSERT INTO `reg` (`name`, `username`, `password`, `city`, `image`, `gender`, `id`, `fk_idProfile`) VALUES
+('Bikash', 'bikash', 'bikash', 'knp', 'image/images.png', 'male', 2, NULL),
+('Alciomar Hollanda', 'alciomar@gmail.com', '123', 'knp', 'image/github-octocat.png', 'male', 3, 2);
 
 --
 -- Índices para tabelas despejadas
@@ -76,10 +96,17 @@ ALTER TABLE `city`
   ADD PRIMARY KEY (`idCity`);
 
 --
+-- Índices para tabela `profile_reg`
+--
+ALTER TABLE `profile_reg`
+  ADD PRIMARY KEY (`idProfile`);
+
+--
 -- Índices para tabela `reg`
 --
 ALTER TABLE `reg`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_idProfile` (`fk_idProfile`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -92,10 +119,26 @@ ALTER TABLE `city`
   MODIFY `idCity` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de tabela `profile_reg`
+--
+ALTER TABLE `profile_reg`
+  MODIFY `idProfile` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de tabela `reg`
 --
 ALTER TABLE `reg`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `reg`
+--
+ALTER TABLE `reg`
+  ADD CONSTRAINT `reg_ibfk_1` FOREIGN KEY (`fk_idProfile`) REFERENCES `profile_reg` (`idProfile`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

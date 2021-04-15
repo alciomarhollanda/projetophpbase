@@ -4,6 +4,7 @@
 <?php
     include 'connect.php';
     include 'checkLogin.php';
+    include 'checkAdmin.php';
 
     if(isset($_POST['update'])){
         $id=$_POST['id'];

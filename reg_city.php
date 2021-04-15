@@ -3,6 +3,7 @@
 
 include 'connect.php';
 include 'checkLogin.php';
+include 'checkAdmin.php';
 
 if(isset($_POST['sub'])){
     $nameCity=$_POST['nameCity'];
