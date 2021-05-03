@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+</head>
+<body>
+
 <?php
     include 'connect.php';
     // include 'checkLogin.php';
@@ -11,11 +18,34 @@
         $quantity = (int)$_POST['quantity'];
         $nomeProduto = $_POST['nomeProduto'];
 
-        $sqlUpdateCity = "INSERT INTO compra_produto (FK_PRODUTO,FK_COMPRA,QTD_PRODUTO) VALUES ({$product_id}, 1,{$quantity});";
-        
-        mysqli_query($con, $sqlUpdateCity);
+        $idCompra = 1;
 
-        header('location:home.php');
+        $sqlGetCompra="select * from compra_produto where FK_COMPRA={$idCompra} AND FK_PRODUTO ={$product_id}";
+        $queryGetCompra= mysqli_query($con, $sqlGetCompra);
+        $resultCompra=mysqli_fetch_assoc($queryGetCompra);
+
+        $ExisteCompra = isset($resultCompra);    
+        if(isset($resultCompra)){
+            
+            $sqlAddOrUpdate = "
+            UPDATE compra_produto set QTD_PRODUTO={$quantity} 
+            WHERE FK_PRODUTO ={$product_id} and FK_COMPRA={$idCompra};
+            ";
+
+        }else{
+            $sqlAddOrUpdate = "
+            INSERT INTO compra_produto (FK_PRODUTO,FK_COMPRA,QTD_PRODUTO) 
+            VALUES ({$product_id}, {$idCompra},{$quantity});
+            ";
+
+        }
+
+        mysqli_query($con, $sqlAddOrUpdate);
+
+
+
+
+        // header('location:home.php');
 
     }
 
@@ -26,10 +56,13 @@
 <table border='1'>
     <tr>
         <th>
-            Name
+            Id
         </th>
         <th>
-            Username
+            Nome
+        </th>
+        <th>
+            Preço
         </th>
         <th></th>
 
@@ -56,6 +89,9 @@ while($produto=  mysqli_fetch_assoc($qu)){
             <?php echo $produto['NOME_PRODUTO']?>
         </td>
         <td>
+            <?php echo $produto['price']?>
+        </td>
+        <td>
             <form method="POST" enctype="multipart/form-data">
                 <input type="number" name="quantity" value="<?=$produto['QTD_PRODUTO']?>" min="1" placeholder="Quantity" required>
                 <input type="hidden" name="idProduto" value="<?=$produto['ID_PRODUTO']?>">
@@ -68,7 +104,9 @@ while($produto=  mysqli_fetch_assoc($qu)){
 }
 ?>
 
-
+<br>
+<br>
+<br>
 
 
 
@@ -79,6 +117,12 @@ while($produto=  mysqli_fetch_assoc($qu)){
         </th>
         <th>
             Preço
+        </th>
+        <th>
+            Quantidade
+        </th>
+        <th>
+            Total Preço
         </th>
     </tr>
 
@@ -98,10 +142,21 @@ while($compra_produto=  mysqli_fetch_assoc($qu)){
             <?php echo $compra_produto['NOME_PRODUTO']?>
         </td>
         <td>
+            <?php echo $compra_produto['price']?>
+        </td>
+        <td>
             <?php echo $compra_produto['QTD_PRODUTO']?>
+        </td>
+        <td>
+            <?php echo $compra_produto['QTD_PRODUTO']*$compra_produto['price']?>
         </td>
 
     </tr>
     <?php
 }
 ?>
+
+
+
+</body>
+</html>
