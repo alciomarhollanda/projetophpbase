@@ -103,6 +103,7 @@ while($produto=  mysqli_fetch_assoc($qu)){
     <?php
 }
 ?>
+</table>
 
 <br>
 <br>
@@ -155,7 +156,7 @@ while($compra_produto=  mysqli_fetch_assoc($qu)){
     <?php
 }
 ?>
-
+</table>
 
 
 </body>
